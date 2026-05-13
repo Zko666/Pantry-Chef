@@ -1,0 +1,6 @@
+{
+  "name": "PantryChef",
+  "description": "An AI-powered kitchen assistant that transforms available ingredients into delicious recipes while hunting local grocery deals.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["AI Recipe Matching", "Pantry Inventory Management", "Local Grocery Deals", "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and preferences",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "dietary": { "type": "array", "items": { "type": "string" } },
+            "allergies": { "type": "array", "items": { "type": "string" } },
+            "householdSize": { "type": "integer" },
+            "budget": { "type": "string", "enum": ["frugal", "moderate", "premium"] },
+            "cuisines": { "type": "array", "items": { "type": "string" } },
+            "skillLevel": { "type": "string", "enum": ["Beginner", "Home Cook", "Chef"] }
+          }
+        },
+        "flavorVector": {
+          "type": "object",
+          "properties": {
+            "spicy": { "type": "number" },
+            "sweet": { "type": "number" },
+            "savory": { "type": "number" },
+            "fresh": { "type": "number" },
+            "rich": { "type": "number" },
+            "acidic": { "type": "number" }
+          }
+        },
+        "techniqueMastery": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "onboarded": { "type": "boolean" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        }
+      },
+      "required": ["email"]
+    },
+    "PantryItem": {
+      "title": "Pantry Item",
+      "description": "An ingredient in the user's pantry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "category": { "type": "string" },
+        "expiryDate": { "type": "string", "format": "date-time" },
+        "addedAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["fresh", "expiring", "expired"] },
+        "pricePerUnit": { "type": "number" }
+      },
+      "required": ["name", "quantity"]
+    },
+    "Recipe": {
+      "title": "Recipe",
+      "description": "A cooking recipe",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "quantity": { "type": "string" }
+            }
+          }
+        },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "prepTime": { "type": "integer" },
+        "cookTime": { "type": "integer" },
+        "difficulty": { "type": "string" },
+        "cuisine": { "type": "string" },
+        "nutrients": { "type": "object" },
+        "imageUrl": { "type": "string" },
+        "techniqueTags": { "type": "array", "items": { "type": "string" } },
+        "flavorProfile": { "type": "object" },
+        "wasteReductionScore": { "type": "number" }
+      }
+    },
+    "Deal": {
+      "title": "Grocery Deal",
+      "description": "Local grocery store price information",
+      "type": "object",
+      "properties": {
+        "storeName": { "type": "string" },
+        "itemName": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "expiryDate": { "type": "string", "format": "date-time" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "users/{userId}/pantry/{itemId}": {
+      "schema": "PantryItem",
+      "description": "Ingredients in user's pantry"
+    },
+    "recipes/{recipeId}": {
+      "schema": "Recipe",
+      "description": "Global or user-generated recipes"
+    },
+    "deals/{dealId}": {
+      "schema": "Deal",
+      "description": "Local grocery deals"
+    }
+  }
+}
