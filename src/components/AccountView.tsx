@@ -15,7 +15,10 @@ import {
   HelpCircle,
   Trophy,
   Flame,
-  Utensils
+  Utensils,
+  Download,
+  Info,
+  ShieldCheck
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { 
@@ -60,9 +63,14 @@ export default function AccountView() {
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-5xl font-serif mb-2">My Profile</h1>
-          <p className="text-gray-500 font-medium tracking-tight uppercase text-xs opacity-60">
-            Flavor intelligence & Technique Mastery
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="text-gray-500 font-medium tracking-tight uppercase text-xs opacity-60">
+              Flavor intelligence & Technique Mastery
+            </p>
+            <span className="px-2 py-0.5 rounded bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-wider border border-green-100">
+              Free Personal Use
+            </span>
+          </div>
         </div>
       </header>
 
@@ -124,6 +132,7 @@ export default function AccountView() {
         <div className="lg:col-span-2 space-y-8">
           {/* Technique Mastery */}
           <div className="organic-card">
+            {/* ... rest of technique mastery remains ... */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20">
@@ -171,6 +180,43 @@ export default function AccountView() {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Personal Access & Offline Section */}
+          <div className="organic-card">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 bg-black/5 rounded-xl">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-xl font-serif">Personal Use Billing</h3>
+            </div>
+            
+            <div className="p-6 bg-white border border-black/5 rounded-[32px] mb-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="font-bold text-sm">Personal License: Active</span>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                This application is fully licensed for individual, non-commercial use. No monthly subscription or "smart features" billing is required for your personal home kitchen access.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-secondary/50 rounded-3xl border border-black/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Download className="w-4 h-4 text-primary" />
+                  <span className="font-bold text-sm">Install App</span>
+                </div>
+                <p className="text-xs text-gray-500">Add PantryChef to your home screen for faster, native-like access.</p>
+              </div>
+              <div className="p-5 bg-secondary/50 rounded-3xl border border-black/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Refrigerator className="w-4 h-4 text-primary" />
+                  <span className="font-bold text-sm">Offline Pantry</span>
+                </div>
+                <p className="text-xs text-gray-500">Access your basic inventory and shopping lists even without internet.</p>
+              </div>
             </div>
           </div>
 

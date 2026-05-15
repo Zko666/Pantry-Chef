@@ -29,6 +29,9 @@ export default function Layout({ children, activeTab, setActiveTab }: LayoutProp
     <div className="flex flex-col min-h-screen bg-secondary pb-20 md:pb-0 md:pl-20">
       {/* Sidebar for Desktop / Bottom Nav for Mobile */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-t border-black/5 px-6 py-3 md:top-0 md:left-0 md:bottom-0 md:right-auto md:w-20 md:border-t-0 md:border-r md:flex-col md:justify-center md:items-center">
+        <div className="hidden md:flex flex-col items-center mb-8 opacity-20 hover:opacity-100 transition-opacity">
+           <span className="text-[8px] font-bold uppercase tracking-[0.2em] [writing-mode:vertical-lr] rotate-180">Personal Edition</span>
+        </div>
         <ul className="flex justify-between items-center md:flex-col md:gap-8">
           {navItems.map((item) => {
             const Icon = item.icon;
